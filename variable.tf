@@ -1,18 +1,4 @@
-# ----------------------------------------------------------------------------------------------------------------------
-# Organization policy
-# ----------------------------------------------------------------------------------------------------------------------
-# resource "google_project_organization_policy" "gke-vpc-peering" {
-#     project = var.project_id
-#     constraint = "compute.restrictVpcPeering"
 
-#     list_policy {
-#         allow {
-#             all = true
-#         }
-#     }
-# }
-
-// Infra Modernization project
 variable organization_id {
 }
 variable billing_account {    
@@ -34,23 +20,3 @@ variable pubsub_topic_name {
 }
 variable pubsub_subscription_name {
 }
-
-
-# variable keyring_name {
-# }
-
-# variable crypto_key_name {
-# }
-
-# variable secret_id {
-# }
-
-# variable secert_label {
-# }
-
-
-# variable "ser_acc" {
-#  description = " Service Account"
-#  type        = string
-#  default     = demo_project.project_id
-# }
