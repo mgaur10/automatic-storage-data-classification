@@ -29,24 +29,27 @@ resource "google_service_account" "def_ser_acc" {
    display_name = "AppEngine Service Account"
  }
 
+
 # Add required roles to the service accounts
-  resource "google_organization_iam_member" "service_dlp_admin" {
-   org_id  = var.organization_id
+  resource "google_project_iam_member" "service_dlp_admin" {
+   project = google_project.demo_project.project_id
    role    = "roles/dlp.admin"
    member  = "serviceAccount:${google_service_account.def_ser_acc.email}"
    depends_on = [google_service_account.def_ser_acc]
   }
 
-  resource "google_organization_iam_member" "ser_agent" {
-    org_id  = var.organization_id
+  resource "google_project_iam_member" "ser_agent" {
+    project = google_project.demo_project.project_id
     role    = "roles/dlp.serviceAgent"
     member  = "serviceAccount:${google_service_account.def_ser_acc.email}"
     depends_on = [google_service_account.def_ser_acc]
   }
 
-  resource "google_organization_iam_member" "proj_owner" {
-    org_id  = var.organization_id
-    role    = "roles/owner"
-    member  = "serviceAccount:${google_service_account.def_ser_acc.email}"
-    depends_on = [google_service_account.def_ser_acc]
+  # Add required roles to the service accounts
+  resource "google_project_iam_member" "proj_editor" {
+   project = google_project.demo_project.project_id
+   role    = "roles/editor"
+   member  = "serviceAccount:${google_service_account.def_ser_acc.email}"
+   depends_on = [google_service_account.def_ser_acc]
   }
+
